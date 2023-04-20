@@ -20,7 +20,7 @@ TestCameraManager="*res://addons/test_camera_3d/test_camera_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/test_camera_3d/test_camera_3d_plugin.cfg")
+enabled=PackedStringArray("res://addons/test_camera_3d/plugin.cfg")
 
 [input]
 

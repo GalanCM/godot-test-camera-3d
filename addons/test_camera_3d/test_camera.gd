@@ -16,8 +16,17 @@ func _ready():
 	get_parent().remove_child(self)
 	focus_point_y.add_child(self)
 
-	focus_point_x.rotate(Vector3(0, 1, 0), TAU / 16)
-	focus_point_y.rotate(Vector3(1, 0, 0), TAU / -8)
+	const CameraAngles := preload("res://addons/test_camera_3d/test_camera_plugin.gd").CameraAngles
+
+	match ProjectSettings.get_setting("test_camera_3d/initial_angle", 0):
+		CameraAngles.DEFAULT:
+			focus_point_x.rotate(Vector3(1, 0, 0), TAU / -8)
+		CameraAngles.BACK:
+			focus_point_x.rotate(Vector3(0, 1, 0), -TAU / 4)
+		CameraAngles.TOP:
+			focus_point_y.rotate(Vector3(1, 0, 0), -TAU / 4)
+		CameraAngles.SIDE:
+			pass
 
 	%"UpInput".text = ", ".join(InputMap.action_get_events("testcamera_up").map(func(event): return event.as_text()))
 	%"DownInput".text = ", ".join(InputMap.action_get_events("testcamera_down").map(func(event): return event.as_text()))
