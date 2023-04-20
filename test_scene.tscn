@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcytxn0gc8k65"]
+
+[sub_resource type="GDScript" id="GDScript_qbl2m"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	position.x += 1
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_ej3di"]
+
+[node name="TestScene" type="Node3D"]
+script = SubResource("GDScript_qbl2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ej3di")
+
+[node name="Node" type="Node" parent="MeshInstance3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91657, 0, 1.09166)
+mesh = SubResource("BoxMesh_ej3di")
+
+[node name="Node" type="Node" parent="MeshInstance3D2"]
