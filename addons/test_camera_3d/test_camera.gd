@@ -1,39 +1,33 @@
 extends Camera3D
 
-var focus_point_x := Node3D.new()
-var focus_point_y := Node3D.new()
+
+var position_offset := Transform3D.IDENTITY
+var rotation_around_x := Transform3D.IDENTITY
+var rotation_around_y := Transform3D.IDENTITY
+
 
 var turn_speed = 1.3
 
 
 func _ready():
-	focus_point_x.name = "TestCameraFocusX"
-	focus_point_y.name = "TestCameraFocusY"
-
-	await(get_tree().physics_frame)
-	get_parent().add_child(focus_point_x)
-	focus_point_x.add_child(focus_point_y)
-	get_parent().remove_child(self)
-	focus_point_y.add_child(self)
-
 	const CameraAngles := preload("res://addons/test_camera_3d/test_camera_plugin.gd").CameraAngles
 
 	match ProjectSettings.get_setting("test_camera_3d/starting_angle", 0):
 		CameraAngles.DEFAULT:
-			focus_point_x.rotate(Vector3(0, 1, 0), TAU / 8)
-			focus_point_y.rotate(Vector3(1, 0, 0), TAU / -8)
+			rotation_around_y = rotation_around_y.rotated(Vector3(0, 1, 0), TAU / 8)
+			rotation_around_x = rotation_around_x.rotated(Vector3(1, 0, 0), TAU / -8)
 		CameraAngles.POSITIVE_X:
-			focus_point_x.rotate(Vector3(0, 1, 0), TAU / 4)
+			rotation_around_y = rotation_around_y.rotated(Vector3(0, 1, 0), TAU / 4)
 		CameraAngles.NEGATIVE_X:
-			focus_point_x.rotate(Vector3(0, 1, 0), TAU / -4)
+			rotation_around_y = rotation_around_y.rotated(Vector3(0, 1, 0), TAU / -4)
 		CameraAngles.POSITIVE_Y:
-			focus_point_y.rotate(Vector3(1, 0, 0), -TAU / 4)
+			rotation_around_x = rotation_around_x.rotated(Vector3(1, 0, 0), -TAU / 4)
 		CameraAngles.NEGATIVE_Y:
-			focus_point_y.rotate(Vector3(1, 0, 0), -TAU / -4)
+			rotation_around_x = rotation_around_x.rotated(Vector3(1, 0, 0), -TAU / -4)
 		CameraAngles.POSITIVE_Z:
 			pass
 		CameraAngles.NEGATIVE_Z:
-			focus_point_x.rotate(Vector3(0, 1, 0), TAU / 2)
+			rotation_around_y = rotation_around_y.rotated(Vector3(0, 1, 0), TAU / 2)
 
 
 	%"UpInput".text = ", ".join(InputMap.action_get_events("testcamera_up").map(func(event): return event.as_text()))
@@ -54,9 +48,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("testcamera_down", true):
 		orbit_motion.y += 1
 
-	focus_point_x.rotate(Vector3(0, 1, 0), orbit_motion.x * delta * turn_speed)
-	focus_point_y.rotate(Vector3(1, 0, 0), orbit_motion.y * delta * turn_speed)
+	rotation_around_y = rotation_around_y.rotated(Vector3(0, 1, 0), orbit_motion.x * delta * turn_speed)
+	rotation_around_x = rotation_around_x.rotated(Vector3(1, 0, 0), orbit_motion.y * delta * turn_speed)
+
+	transform = rotation_around_y * rotation_around_x * position_offset
 
 
 func set_orbit_radius(radius: int) -> void:
-	position = Vector3(0, 0, radius)
+	position_offset = position_offset.translated( Vector3(0, 0, radius) )
