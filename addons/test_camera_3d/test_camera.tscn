@@ -3,7 +3,7 @@
 [ext_resource type="Environment" uid="uid://b1lxmub3dbd84" path="res://addons/test_camera_3d/default_test_environment.tres" id="1_h3v17"]
 [ext_resource type="Script" path="res://addons/test_camera_3d/test_camera.gd" id="2_8uys3"]
 
-[node name="TestCamera3D" type="Camera3D"]
+[node name="_test_camera_3d_" type="Camera3D"]
 environment = ExtResource("1_h3v17")
 current = true
 script = ExtResource("2_8uys3")

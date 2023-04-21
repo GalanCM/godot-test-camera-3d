@@ -13,7 +13,7 @@ func _ready():
 		return
 
 	var camera := preload("res://addons/test_camera_3d/test_camera.tscn").instantiate()
-	get_tree().current_scene.add_child(camera, true, INTERNAL_MODE_BACK)
+	get_tree().get_root().add_child.call_deferred(camera, true, INTERNAL_MODE_BACK)
 
 	var scene_aabb := AABB()
 

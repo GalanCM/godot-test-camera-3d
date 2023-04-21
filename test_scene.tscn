@@ -10,8 +10,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	position.x += 1
+func _process(delta):
+	position.x += 1 * delta
 "
 
 [sub_resource type="BoxMesh" id="BoxMesh_ej3di"]

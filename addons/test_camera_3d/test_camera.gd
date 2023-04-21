@@ -51,7 +51,9 @@ func _process(delta: float) -> void:
 	rotation_around_y = rotation_around_y.rotated(Vector3(0, 1, 0), orbit_motion.x * delta * turn_speed)
 	rotation_around_x = rotation_around_x.rotated(Vector3(1, 0, 0), orbit_motion.y * delta * turn_speed)
 
-	transform = rotation_around_y * rotation_around_x * position_offset
+	assert(get_tree().current_scene is Node3D)
+	var scene_root_offset := Transform3D(Basis.IDENTITY, get_tree().current_scene.transform.origin)
+	transform = scene_root_offset * rotation_around_y * rotation_around_x * position_offset
 
 
 func set_orbit_radius(radius: int) -> void:
