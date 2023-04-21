@@ -3,9 +3,12 @@ extends EditorPlugin
 
 enum CameraAngles {
 	DEFAULT,
-	BACK,
-	TOP,
-	SIDE
+	POSITIVE_X,
+	NEGATIVE_X,
+	POSITIVE_Y,
+	NEGATIVE_Y,
+	POSITIVE_Z,
+	NEGATIVE_Z,
 }
 
 
@@ -37,22 +40,22 @@ func _enable_plugin():
 
 		return inflected
 
-	if not ProjectSettings.has_setting("test_camera_3d/initial_angle"):
-		ProjectSettings.set_setting("test_camera_3d/initial_angle", CameraAngles.DEFAULT)
-		ProjectSettings.set_initial_value("test_camera_3d/initial_angle", CameraAngles.DEFAULT)
+	if not ProjectSettings.has_setting("test_camera_3d/starting_angle"):
+		ProjectSettings.set_setting("test_camera_3d/starting_angle", CameraAngles.DEFAULT)
+		ProjectSettings.set_initial_value("test_camera_3d/starting_angle", CameraAngles.DEFAULT)
 		ProjectSettings.add_property_info({
-			"name": "test_camera_3d/initial_angle",
+			"name": "test_camera_3d/starting_angle",
 			"type": TYPE_INT,
 			"hint": PROPERTY_HINT_ENUM,
 			"hint_string": ",".join(quick_inflect.call(CameraAngles.keys()))
 		})
 
 	ProjectSettings.save.call_deferred()
-	prints(ProjectSettings.has_setting("test_camera_3d/initial_angle"), ProjectSettings.get_setting("test_camera_3d/initial_angle"), CameraAngles.DEFAULT)
 
 
 func _enter_tree():
 	add_autoload_singleton("TestCameraManager", "res://addons/test_camera_3d/test_camera_manager.gd")
+
 
 func _exit_tree():
 	remove_autoload_singleton("TestCameraManager")

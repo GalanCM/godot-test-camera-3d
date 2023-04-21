@@ -20,8 +20,4 @@ Like game and engine controls, TestsCamera3D controls can be edited in the **Inp
 
 Other settings are available in the **General** tab of **Project Settings**, under **Test Camera 3D**.
 
-- **Initial Angle:** Controls the angle the camera starts at when running a scene.
-  - Default: An isometric angle. Designed to try to get an _okay_ angle for most projects.
-  - Back: A rear-view camera. Best for 3rd person action game player characters.
-  - Top: For top-down games.
-  - Side: For side-scrollers.
+- **Starting Angle:** Controls the angle the camera starts at when running a scene. Pick the one that best suits your game.
