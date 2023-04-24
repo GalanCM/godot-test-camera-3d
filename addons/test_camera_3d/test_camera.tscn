@@ -44,11 +44,12 @@ grow_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="ControlsDisplay" type="GridContainer" parent="MarginContainer2"]
+[node name="InputGuide" type="GridContainer" parent="MarginContainer2"]
 layout_mode = 2
+theme_override_constants/h_separation = 10
 columns = 2
 
-[node name="UpArrow" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="UpArrow" type="Label" parent="MarginContainer2/InputGuide"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
@@ -58,7 +59,7 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 text = "↑"
 
-[node name="UpInput" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="UpInput" type="Label" parent="MarginContainer2/InputGuide"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
@@ -68,7 +69,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 
-[node name="DownArrow" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="DownArrow" type="Label" parent="MarginContainer2/InputGuide"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
@@ -78,7 +79,7 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 text = "↓"
 
-[node name="DownInput" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="DownInput" type="Label" parent="MarginContainer2/InputGuide"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
@@ -88,7 +89,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 
-[node name="LeftArrow" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="LeftArrow" type="Label" parent="MarginContainer2/InputGuide"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
@@ -98,7 +99,7 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 text = "←"
 
-[node name="LeftInput" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="LeftInput" type="Label" parent="MarginContainer2/InputGuide"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
@@ -108,7 +109,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 
-[node name="RightArrow" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="RightArrow" type="Label" parent="MarginContainer2/InputGuide"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
@@ -118,7 +119,7 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 text = "↑"
 
-[node name="RightInput" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="RightInput" type="Label" parent="MarginContainer2/InputGuide"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
@@ -128,7 +129,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 
-[node name="ZoomIn" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="ZoomIn" type="Label" parent="MarginContainer2/InputGuide"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
@@ -138,7 +139,7 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 text = "Zoom In"
 
-[node name="ZoomInInput" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="ZoomInInput" type="Label" parent="MarginContainer2/InputGuide"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
@@ -148,7 +149,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 
-[node name="ZoomOut" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="ZoomOut" type="Label" parent="MarginContainer2/InputGuide"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
@@ -158,7 +159,29 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 text = "Zoom Out"
 
-[node name="ZoomOutInput" type="Label" parent="MarginContainer2/ControlsDisplay"]
+[node name="ZoomOutInput" type="Label" parent="MarginContainer2/InputGuide"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="FollowToggle" type="Label" parent="MarginContainer2/InputGuide"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 12
+text = "Unfollow Scene Root"
+
+[node name="FollowToggleInput" type="Label" parent="MarginContainer2/InputGuide"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
