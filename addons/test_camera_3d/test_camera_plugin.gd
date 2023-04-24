@@ -13,10 +13,12 @@ enum CameraAngles {
 
 
 func _enable_plugin():
-	var create_default_key := func(physical_keycode: int) -> InputEventKey:
+	var create_default_key := func(physical_keycode: int, include_shift: bool = false) -> InputEventKey:
 		var default_key = InputEventKey.new()
 		default_key.ctrl_pressed = true
 		default_key.alt_pressed = true
+		if include_shift == true:
+			default_key.shift_pressed = true
 		default_key.physical_keycode = physical_keycode
 		return default_key
 
@@ -28,6 +30,10 @@ func _enable_plugin():
 		ProjectSettings.set_setting("input/testcamera_left", {"deadzone": 0.5, "events": [create_default_key.call(KEY_LEFT)]})
 	if not ProjectSettings.has_setting("input/testcamera_right"):
 		ProjectSettings.set_setting("input/testcamera_right", {"deadzone": 0.5, "events": [create_default_key.call(KEY_RIGHT)]})
+	if not ProjectSettings.has_setting("input/testcamera_in"):
+		ProjectSettings.set_setting("input/testcamera_in", {"deadzone": 0.5, "events": [create_default_key.call(KEY_UP, true)]})
+	if not ProjectSettings.has_setting("input/testcamera_out"):
+		ProjectSettings.set_setting("input/testcamera_out", {"deadzone": 0.5, "events": [create_default_key.call(KEY_DOWN, true)]})
 
 	var quick_inflect = func(keys: Array):
 		var inflected: PackedStringArray = []
