@@ -62,8 +62,10 @@ func _enable_plugin():
 
 
 func _enter_tree():
-	add_autoload_singleton("TestCameraManager", "res://addons/test_camera_3d/test_camera_manager.gd")
+	if Engine.is_editor_hint():
+		add_autoload_singleton("TestCameraManager", "res://addons/test_camera_3d/test_camera_manager.gd")
 
 
 func _exit_tree():
-	remove_autoload_singleton("TestCameraManager")
+	if Engine.is_editor_hint():
+		remove_autoload_singleton("TestCameraManager")
