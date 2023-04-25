@@ -8,6 +8,8 @@ func _ready():
 	var visual_instances := get_tree().current_scene.find_children(
 		"*", "VisualInstance3D", true, false
 	)
+	if get_tree().current_scene is VisualInstance3D:
+		visual_instances.push_front(get_tree().current_scene)
 
 	if visual_instances.size() == 0:
 		return
