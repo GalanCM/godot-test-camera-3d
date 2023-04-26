@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ojhsy1s4nes"]
+
+[ext_resource type="Material" uid="uid://gicrche7bgip" path="res://addons/test_camera_3d/test_grid.material" id="1_3mxdo"]
+[ext_resource type="Script" path="res://addons/test_camera_3d/test_grid.gd" id="1_ox6xm"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ij4u3"]
+material = ExtResource("1_3mxdo")
+size = Vector2(100, 100)
+subdivide_width = 99
+subdivide_depth = 99
+orientation = 1
+
+[node name="_test_grid_" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_ij4u3")
+script = ExtResource("1_ox6xm")

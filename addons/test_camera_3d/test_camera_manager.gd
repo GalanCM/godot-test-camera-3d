@@ -1,5 +1,8 @@
 extends Node
 
+@onready var camera := preload("res://addons/test_camera_3d/test_camera.tscn").instantiate()
+@onready var test_grid := preload("res://addons/test_camera_3d/test_grid.tscn").instantiate()
+
 
 func _ready():
 	if get_viewport().get_camera_3d() != null:
@@ -14,7 +17,6 @@ func _ready():
 	if visual_instances.size() == 0:
 		return
 
-	var camera := preload("res://addons/test_camera_3d/test_camera.tscn").instantiate()
 	get_tree().get_root().add_child.call_deferred(camera, true, INTERNAL_MODE_BACK)
 
 	var scene_aabb := AABB()
@@ -34,3 +36,16 @@ func _ready():
 	if default_environment_path != "":
 		camera.environment = load(default_environment_path)
 		camera.get_node("PhysicalSkyLight").show()
+
+	test_grid.camera = camera
+	camera.set_grid_display(false)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("testcamera_grid_toggle", false, true):
+		if not test_grid.is_inside_tree():
+			get_tree().root.add_child(test_grid)
+			camera.set_grid_display(true)
+		else:
+			get_tree().root.remove_child(test_grid)
+			camera.set_grid_display(false)

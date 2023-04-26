@@ -191,5 +191,27 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 12
 
+[node name="GridToggle" type="Label" parent="MarginContainer2/InputGuide"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 12
+text = "Show Grid"
+
+[node name="GridToggleInput" type="Label" parent="MarginContainer2/InputGuide"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 12
+
 [node name="PhysicalSkyLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.873288, 0.262549, -0.41041, 0, 0.842377, 0.538888, 0.487204, -0.470605, 0.735638, 0, 0, 0)

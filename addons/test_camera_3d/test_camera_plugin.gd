@@ -36,6 +36,8 @@ func _enable_plugin():
 		ProjectSettings.set_setting("input/testcamera_out", {"deadzone": 0.5, "events": [create_default_key.call(KEY_DOWN, true)]})
 	if not ProjectSettings.has_setting("input/testcamera_follow_toggle"):
 		ProjectSettings.set_setting("input/testcamera_follow_toggle", {"deadzone": 0.5, "events": [create_default_key.call(KEY_QUOTELEFT)]})
+	if not ProjectSettings.has_setting("input/testcamera_grid_toggle"):
+		ProjectSettings.set_setting("input/testcamera_grid_toggle", {"deadzone": 0.5, "events": [create_default_key.call(KEY_BACKSLASH)]})
 
 	var quick_inflect = func(keys: Array):
 		var inflected: PackedStringArray = []

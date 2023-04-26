@@ -1,6 +1,6 @@
 extends Camera3D
 
-var position_offset := Transform3D.IDENTITY
+var zoom_offset := Transform3D.IDENTITY
 
 var rotation_around_x := Transform3D.IDENTITY
 var rotation_around_y := Transform3D.IDENTITY
@@ -12,6 +12,14 @@ var follow_scene_root := true:
 		follow_scene_root = value
 		%FollowToggle.text = "Unfollow Scene Root" if value == true else "Follow Scene Root"
 var last_follow_position := Vector3.ZERO
+
+var center: Transform3D:
+	get:
+		return (
+			Transform3D(Basis.IDENTITY, get_tree().current_scene.transform.origin)
+			if follow_scene_root
+			else Transform3D.IDENTITY.translated(last_follow_position)
+		)
 
 var turn_speed = 1.3
 
@@ -61,6 +69,11 @@ func _ready():
 			func(event): return event.as_text()
 		)
 	)
+	%GridToggleInput.text = ", ".join(
+		InputMap.action_get_events("testcamera_grid_toggle").map(
+			func(event): return event.as_text()
+		)
+	)
 
 
 func _process(delta: float) -> void:
@@ -91,19 +104,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("testcamera_out", true):
 		zoom_change += initial_zoom * 0.75 * delta
 
-	position_offset = position_offset.translated(Vector3(0, 0, zoom_change))
-	position_offset.origin.z = clamp(position_offset.origin.z, initial_zoom * 0.3, initial_zoom * 2)
+	zoom_offset = zoom_offset.translated(Vector3(0, 0, zoom_change))
+	zoom_offset.origin.z = clamp(zoom_offset.origin.z, initial_zoom * 0.1, initial_zoom * 2)
 
 	# apply camera transform
 	assert(get_tree().current_scene is Node3D)
 
-	var center := (
-		Transform3D(Basis.IDENTITY, get_tree().current_scene.transform.origin)
-		if follow_scene_root
-		else Transform3D.IDENTITY.translated(last_follow_position)
-	)
-
-	transform = center * rotation_around_y * rotation_around_x * position_offset
+	transform = center * rotation_around_y * rotation_around_x * zoom_offset
 
 
 func _input(event: InputEvent) -> void:
@@ -115,4 +122,8 @@ func _input(event: InputEvent) -> void:
 
 func set_orbit_radius(radius: int) -> void:
 	initial_zoom = radius
-	position_offset = position_offset.translated(Vector3(0, 0, radius))
+	zoom_offset = zoom_offset.translated(Vector3(0, 0, radius))
+
+
+func set_grid_display(is_visible: bool) -> void:
+	%GridToggle.text = "Hide Grid" if is_visible == true else "Show Grid"
