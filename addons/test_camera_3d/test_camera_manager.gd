@@ -42,6 +42,9 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
+	if not camera.is_inside_tree():
+		return
+
 	if event.is_action_pressed("testcamera_grid_toggle", false, true):
 		if not test_grid.is_inside_tree():
 			get_tree().root.add_child(test_grid)
