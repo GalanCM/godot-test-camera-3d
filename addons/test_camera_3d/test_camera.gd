@@ -25,6 +25,8 @@ var turn_speed = 1.3
 
 
 func _ready():
+	push_warning("Using Test Camera3D")
+
 	# set starting camera rotation
 	const CameraAngles := preload("res://addons/test_camera_3d/test_camera_plugin.gd").CameraAngles
 
